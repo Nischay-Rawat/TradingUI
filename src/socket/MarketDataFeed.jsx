@@ -8,7 +8,6 @@ const initProtobuf = async () => {
    protobufRoot = await protobuf.load("/marketDataFeed.proto");
   console.log("Protobuf part initialization complete");
 };
-const access_token =localStorage.getItem("accessToken");
 
 
 // Function to get WebSocket URL
@@ -53,7 +52,9 @@ const decodeProfobuf = (buffer) => {
 };
 
 // MarketDataFeed component
-function MarketDataFeed({ access_token }) {
+function MarketDataFeed({  }) {
+  const access_token =localStorage.getItem("accessToken");
+
   const [isConnected, setIsConnected] = useState(false);
   const [feedData, setFeedData] = useState([]);
 
