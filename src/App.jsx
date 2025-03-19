@@ -9,8 +9,8 @@ import {
 } from "react-router-dom";
 
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
-console.log(CLIENT_ID);
 const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
+const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET;
 const AUTH_URL = `https://api.upstox.com/v2/login/authorization/dialog?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
 
 const Login = () => {
@@ -40,7 +40,6 @@ const Callback = () => {
       const code = new URLSearchParams(location.search).get("code");
       if (code) {
         try {
-          
           const response = await axios.post(
             "https://api.upstox.com/v2/login/authorization/token",
             {
@@ -48,6 +47,13 @@ const Callback = () => {
               client_id: CLIENT_ID,
               redirect_uri: REDIRECT_URI,
               grant_type: "authorization_code",
+              client_secret: CLIENT_SECRET,
+            },
+            {
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                Accept: "application/json",
+              },
             }
           );
           setToken(response.data.access_token);
