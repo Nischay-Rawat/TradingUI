@@ -7,6 +7,7 @@ import {
   useNavigate,
   useLocation,
 } from "react-router-dom";
+import Feed from "./Feed";
 
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
@@ -78,6 +79,7 @@ const Dashboard = () => {
         href="/place-order"
         className="mt-4 px-4 py-2 bg-green-600 text-white rounded"
       >
+        <Feed/>
         Place Order
       </a>
     </div>
@@ -151,6 +153,8 @@ const App = () => {
         <Route path="/callback" element={<Callback />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/place-order" element={<PlaceOrder />} />
+        {/* <Route path="/dashboard"element={<Dashboard/>} */}
+        
       </Routes>
     </Router>
   );
