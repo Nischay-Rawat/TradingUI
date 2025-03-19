@@ -61,7 +61,7 @@ export default function OrderDataFeed({ token }) {
       .catch((error) => {
         console.error(error.message);
       });
-  }, [token]);
+  }, [access_token]);
 
   return (
     <div className="feed-container">
