@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function OrderDataFeed({ token }) {
+export default function OrderDataFeed({ }) {
   const [isConnected, setIsConnected] = useState(false);
   const [feedData, setFeedData] = useState([]);
   const access_token =localStorage.getItem("accessToken");

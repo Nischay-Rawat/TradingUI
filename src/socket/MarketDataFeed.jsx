@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import proto from "./marketDataFeed.proto";
 import { Buffer } from "buffer";
 const protobuf = require("protobufjs");
 
