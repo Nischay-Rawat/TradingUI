@@ -40,6 +40,7 @@ const Callback = () => {
       const code = new URLSearchParams(location.search).get("code");
       if (code) {
         try {
+          
           const response = await axios.post(
             "https://api.upstox.com/v2/login/authorization/token",
             {
