@@ -7,10 +7,10 @@ import {
   useNavigate,
   useLocation,
 } from "react-router-dom";
-import { config } from "dotenv";
-config();
-const CLIENT_ID = process.env.CLIENT_ID;
-const REDIRECT_URI = "your_redirect_uri";
+
+const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
+console.log(CLIENT_ID);
+const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
 const AUTH_URL = `https://api.upstox.com/v2/login/authorization/dialog?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
 
 const Login = () => {
