@@ -9,13 +9,15 @@ const initProtobuf = async () => {
   protobufRoot = await protobuf.load(proto);
   console.log("Protobuf part initialization complete");
 };
+const access_token =localStorage.getItem("accessToken");
+
 
 // Function to get WebSocket URL
 const getUrl = async (token) => {
   const apiUrl = "https://api-v2.upstox.com/feed/market-data-feed/authorize";
   let headers = {
     "Content-type": "application/json",
-    Authorization: "Bearer " + token,
+    Authorization: "Bearer " + access_token,
   };
   const response = await fetch(apiUrl, {
     method: "GET",

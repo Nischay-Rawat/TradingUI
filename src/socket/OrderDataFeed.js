@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 export default function OrderDataFeed({ token }) {
   const [isConnected, setIsConnected] = useState(false);
   const [feedData, setFeedData] = useState([]);
+  const access_token =localStorage.getItem("accessToken");
+
 
   // Establishing WebSocket connection
   useEffect(() => {
@@ -11,7 +13,7 @@ export default function OrderDataFeed({ token }) {
     const headers = {
       "Api-Version": "2.0",
       Accept: "application/json",
-      Authorization: "Bearer " + token,
+      Authorization: "Bearer " + access_token,
     };
 
     // Fetching WebSocket URL
