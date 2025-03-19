@@ -6,14 +6,15 @@ const protobuf = require("protobufjs");
 // Initialize Protobuf root
 let protobufRoot = null;
 const initProtobuf = async () => {
-  protobufRoot = await protobuf.load(proto);
+  
+   protobufRoot = await protobuf.load("/socket/marketDataFeed.proto");
   console.log("Protobuf part initialization complete");
 };
 const access_token =localStorage.getItem("accessToken");
 
 
 // Function to get WebSocket URL
-const getUrl = async (token) => {
+const getUrl = async (access_token) => {
   const apiUrl = "https://api-v2.upstox.com/feed/market-data-feed/authorize";
   let headers = {
     "Content-type": "application/json",
@@ -54,15 +55,15 @@ const decodeProfobuf = (buffer) => {
 };
 
 // MarketDataFeed component
-function MarketDataFeed({ token }) {
+function MarketDataFeed({ access_token }) {
   const [isConnected, setIsConnected] = useState(false);
   const [feedData, setFeedData] = useState([]);
 
   // Establish WebSocket connection
   useEffect(() => {
-    const connectWebSocket = async (token) => {
+    const connectWebSocket = async (access_token) => {
       try {
-        const wsUrl = await getUrl(token);
+        const wsUrl = await getUrl(access_token);
         const ws = new WebSocket(wsUrl);
 
         ws.onopen = () => {
@@ -106,8 +107,8 @@ function MarketDataFeed({ token }) {
     };
 
     initProtobuf();
-    connectWebSocket(token);
-  }, [token]);
+    connectWebSocket(access_token);
+  }, [access_token]);
 
   return (
     <div className="feed-container">
