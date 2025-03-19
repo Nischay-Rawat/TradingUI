@@ -7,7 +7,7 @@ const protobuf = require("protobufjs");
 let protobufRoot = null;
 const initProtobuf = async () => {
   
-   protobufRoot = await protobuf.load("/socket/marketDataFeed.proto");
+   protobufRoot = await protobuf.load("/marketDataFeed.proto");
   console.log("Protobuf part initialization complete");
 };
 const access_token =localStorage.getItem("accessToken");
