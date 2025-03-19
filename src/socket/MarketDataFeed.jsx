@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Buffer } from "buffer";
-const protobuf = require("protobufjs");
-
+import protobuf from "protobufjs"
 // Initialize Protobuf root
 let protobufRoot = null;
 const initProtobuf = async () => {
