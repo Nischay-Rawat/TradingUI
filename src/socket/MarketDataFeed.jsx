@@ -62,19 +62,21 @@ function MarketDataFeed({  }) {
   useEffect(() => {
     const connectWebSocket = async (access_token) => {
       try {
+        const guid = "guid-" + Math.random().toString(36).substring(2, 15);
+
         const wsUrl = await getUrl(access_token);
         const ws = new WebSocket(wsUrl);
 
         ws.onopen = () => {
           setIsConnected(true);
+
           console.log("Connected");
           const data = {
-            guid: "someguid",
+            guid: guid,
             method: "sub",
             data: {
               mode: "full",
-              instrumentKeys: ["NSE_EQ|INE669E01016"],
-            },
+              instrumentKeys: ["NSE_FO|NIFTY25APR24000CE"],            },
           };
           ws.send(Buffer.from(JSON.stringify(data)));
         };
