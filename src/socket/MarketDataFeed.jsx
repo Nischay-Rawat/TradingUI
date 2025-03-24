@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Buffer } from "buffer";
-import protobuf from "protobufjs"
+import protobuf from "protobufjs";
 // Initialize Protobuf root
 let protobufRoot = null;
 const initProtobuf = async () => {
-  
-   protobufRoot = await protobuf.load("/marketDataFeed.proto");
+  protobufRoot = await protobuf.load("/marketDataFeed.proto");
   console.log("Protobuf part initialization complete");
 };
-
 
 // Function to get WebSocket URL
 const getUrl = async (access_token) => {
@@ -52,8 +50,8 @@ const decodeProfobuf = (buffer) => {
 };
 
 // MarketDataFeed component
-function MarketDataFeed({  }) {
-  const access_token =localStorage.getItem("accessToken");
+function MarketDataFeed({}) {
+  const access_token = localStorage.getItem("accessToken");
 
   const [isConnected, setIsConnected] = useState(false);
   const [feedData, setFeedData] = useState([]);
@@ -76,7 +74,8 @@ function MarketDataFeed({  }) {
             method: "sub",
             data: {
               mode: "full",
-              instrumentKeys: ["NSE_FO|NIFTY25APR24000CE"],            },
+              instrumentKeys: ["NSE_FO|NIFTY25APR24000CE"],
+            },
           };
           ws.send(Buffer.from(JSON.stringify(data)));
         };
